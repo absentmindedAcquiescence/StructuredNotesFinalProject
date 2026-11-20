@@ -104,11 +104,14 @@ def placedoor():
     if not location1.is_dir():
         print(f"> {random.choice(doorplacefail)}")
         print("Location 1 doesn't exist.")
-    elif location1.stat().st_size == 0:
-        print(f"> {random.choice(emptydoor)}")
-        print("Location 1 is empty, with no files to transfer.")
-
-    elif not location2.is_dir():
+    elif location1.is_dir():
+        check = not any(location1.iterdir())
+        if check:
+            print(f"> {random.choice(emptydoor)}")
+            print("Location 1 is empty, with no files to transfer.")
+        else:
+            pass
+    if not location2.is_dir():
         location2.mkdir()
         for item in ltargetfiles:
             shutil.move(item, location2)
@@ -124,7 +127,7 @@ def doorman():
     print("1 - Exit case")
     print("2 - Open doors and move files through them")
     print("3 - Wait a little and let The Doorman scrape your desktop")
-    print("4 - Send a file to The Baroness")
+    print("4 - Send a copy of a file to The Baroness")
     print("5 - Have The Doorman read something for you")
     print(" ")
 
@@ -145,6 +148,9 @@ def doorman():
                 hotelguest()
             case 5:
                 records()
+            case _:
+                print("> Apologies, I couldn't quite catch that, dear guest. Could you repeat that?")
+                doorman() 
 
     except ValueError:
         print("> Apologies, I couldn't quite catch that, dear guest. Could you repeat that?")
