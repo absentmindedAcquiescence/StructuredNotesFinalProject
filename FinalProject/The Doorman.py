@@ -166,7 +166,7 @@ def records():
     print(f"> {random.choice(doorplace)}")
     target = Path(str(input()))
     if not target.exists():
-        print(f"{random.choice(doorplacefail)}")
+        print("> Hmm, I can't seem to find what you're looking for.")
         print("> Perhaps I can get you something else?")
         records()
     else:
@@ -174,7 +174,7 @@ def records():
             print(f"> As you wish. Here is the file you requested for:")
             print(file.read())
             print("> Now that that's finished, what else can I do for you?")
-    doorman()
+            doorman()
 
 
 # The first of many functions to be declared
