@@ -55,11 +55,11 @@ doorplace = [
         "Ask away, and it shall be done by me."
     ]
 
-hotelguest = [
+ultlines = [
     "Checking in?",
-    "Enjoy your stay."
-    "Allow me to take you to your room."
-    "I'll get you settled."
+    "Enjoy your stay.",
+    "Allow me to take you to your room.",
+    "I'll get you settled.",
     "May your time here be unforgettable."
 ]
 
@@ -72,8 +72,10 @@ def desktopscraper():
     targetfiles = targetlocation.glob('*.txt')
 
     for targetitem in targetfiles:
-        time.sleep(5)
+        time.sleep(140)
         shutil.copy(targetitem, newplace)
+        print(f"> {random.choice(ultlines)}")
+        time.sleep(1)
         print(f"> {random.choice(uponcopy)}") 
 
     print(f"> {random.choice(finishcopy)}")
@@ -134,7 +136,7 @@ def doorman():
                 placedoor()
                 doorman()
             case 3:
-                time.sleep(5) 
+                time.sleep(6) 
                 print(f"> {random.choice(idle)}")
                 desktopscraper()
                 doorman()
@@ -153,7 +155,7 @@ def hotelguest():
         print("The path doesn't exist.")
         doorman()
     else:
-        print(f"> {random.choice(hotelguest)}")
+        print(f"> {random.choice(ultlines)}")
         shutil.copy(target, newplace)
         print(f"> {random.choice(finishcopy)}")
         
