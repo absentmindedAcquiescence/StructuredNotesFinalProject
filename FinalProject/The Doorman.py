@@ -55,6 +55,12 @@ doorplace = [
         "Ask away, and it shall be done by me."
     ]
 
+doorplacefail = [
+        "Hmm, I can't seem to find what you're looking for.",
+        "Give me a moment, dear guest. I am still trying to find what it is you are looking for.",
+        "My apologies, dear guest. Could I help you in any other way?"
+    ]
+
 ultlines = [
     "Checking in?",
     "Enjoy your stay.",
@@ -81,12 +87,6 @@ def desktopscraper():
     print(f"> {random.choice(finishcopy)}")
 
 def placedoor():
-
-    doorplacefail = [
-        "Hmm, I can't seem to find what you're looking for.",
-        "Give me a moment, dear guest. I am still trying to find what it is you are looking for.",
-        "My apologies, dear guest. Could I help you in any other way?"
-    ]
 
     emptydoor = [
         "I am sorry about the delay, but there seems to be nothing there of note.",
@@ -125,6 +125,7 @@ def doorman():
     print("2 - Open doors and move files through them")
     print("3 - Wait a little and let him scrape your desktop")
     print("4 - Send a file to The Baroness")
+    print("5 - Have The Doorman read something for you")
     print(" ")
 
     try:
@@ -142,6 +143,8 @@ def doorman():
                 doorman()
             case 4:
                 hotelguest()
+            case 5:
+                records()
 
     except ValueError:
         print("> Apologies, I couldn't quite catch that, dear guest. Could you repeat that?")
@@ -159,12 +162,29 @@ def hotelguest():
         shutil.copy(target, newplace)
         print(f"> {random.choice(finishcopy)}")
         
+def records():
+    print(f"> {random.choice(doorplace)}")
+    target = Path(str(input()))
+    if not target.exists():
+        print(f"{random.choice(doorplacefail)}")
+        print("> Perhaps I can get you something else?")
+        records()
+    else:
+        with open(target) as file:
+            print(f"> As you wish. Here is the file you requested for:")
+            print(file.read())
+            print("> Now that that's finished, what else can I do for you?")
+    doorman()
+
 
 # The first of many functions to be declared
 
 
 newplace = Path("The Baroness") 
-newplace.mkdir()
+if not newplace.is_dir():
+    newplace.mkdir()
+else:
+    pass
 
 print(f"> {random.choice(greetings)}")
 doorman()
