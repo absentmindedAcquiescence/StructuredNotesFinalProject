@@ -166,7 +166,9 @@ def hotelguest():
     else:
         print(f"> {random.choice(ultlines)}")
         shutil.copy(target, newplace)
+        time.sleep(1)
         print(f"> {random.choice(finishcopy)}")
+        doorman()
         
 def records():
     print(f"> {random.choice(doorplace)}")
