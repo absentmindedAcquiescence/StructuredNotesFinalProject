@@ -123,7 +123,7 @@ def doorman():
     print(" ")
     print("1 - Exit case")
     print("2 - Open doors and move files through them")
-    print("3 - Wait a little and let him scrape your desktop")
+    print("3 - Wait a little and let The Doorman scrape your desktop")
     print("4 - Send a file to The Baroness")
     print("5 - Have The Doorman read something for you")
     print(" ")
